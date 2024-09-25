@@ -9,6 +9,11 @@ import { Subtask } from 'src/app/shared/models/subtask.model';
 })
 export class SubtaskListComponent {
 
+  /**
+   * SubtaskListComponent manages a list of subtasks, allowing users to
+   * add, update, delete, and toggle completion of each subtask.
+   * Emits updated subtasks to parent component on changes.
+   */
   @Input() subtasks: Subtask[] = [];
   @Output() subtasksChange = new EventEmitter<Subtask[]>();
 

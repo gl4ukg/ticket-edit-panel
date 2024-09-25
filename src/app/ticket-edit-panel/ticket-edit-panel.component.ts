@@ -1,3 +1,8 @@
+/**
+ * TicketEditPanelComponent provides an interface for editing a ticket's details, including
+ * subtasks, assignee, co-owner, importance, and customer information.
+ * Allows switching between different views: Details, Activity, Comments, and Attachments.
+ */
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Ticket } from '../shared/models/ticket.model';

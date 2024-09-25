@@ -1,6 +1,6 @@
 <div class="inline-edit">
   <ng-container *ngIf="!editMode; else editTemplate">
-    <span (click)="enableEdit()" class="editable-field">{{ value || 'Click to edit' }}</span>
+    <span (click)="enableEdit()" class="editable-field">{{ displayValue }}</span>
   </ng-container>
 
   <ng-template #editTemplate>

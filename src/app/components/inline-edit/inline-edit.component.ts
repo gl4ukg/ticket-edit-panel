@@ -7,7 +7,10 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./inline-edit.component.scss']
 })
 export class InlineEditComponent implements OnInit {
-
+ /**
+   * InlineEditComponent allows in-place editing of text with validation.
+   * Emits updated value to parent when saved.
+   */
   @Input() value: string = '';
   @Input() fieldName: string = '';
   @Output() valueChanged = new EventEmitter<string>();
@@ -38,5 +41,8 @@ export class InlineEditComponent implements OnInit {
   cancel() {
     this.control.setValue(this.value);
     this.editMode = false;
+  }
+  get displayValue(): string {
+    return this.value ? this.value : `Enter ${this.fieldName}`;
   }
 }

@@ -1,4 +1,8 @@
-import { Component, Input, OnInit, ElementRef, Renderer2 } from '@angular/core';
+/**
+ * SvgIconComponent dynamically loads an SVG icon, allowing customization of color, width, and height.
+ * Sanitizes the SVG content to ensure safe HTML rendering.
+ */
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -17,9 +21,7 @@ export class SvgIconComponent implements OnInit {
 
   constructor(
     private httpClient: HttpClient,
-    private sanitizer: DomSanitizer,
-    private el: ElementRef,
-    private renderer: Renderer2
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class SvgIconComponent implements OnInit {
   private loadSvg(): void {
     this.httpClient.get(this.iconPath, { responseType: 'text' }).subscribe(
       (svgContent) => {
-        let modifiedSvg = this.updateSvgAttributes(svgContent, this.color, this.width, this.height);  // Modify the SVG with provided color and size
+        const modifiedSvg = this.updateSvgAttributes(svgContent, this.color, this.width, this.height);  // Modify the SVG with provided color and size
         this.safeSvgIcon = this.sanitizer.bypassSecurityTrustHtml(modifiedSvg);
       },
       (error) => {
@@ -41,16 +43,28 @@ export class SvgIconComponent implements OnInit {
   }
 
   private updateSvgAttributes(svgContent: string, color: string, width: string, height: string): string {
-    // Modify the stroke color
+    // Update or add width and height to the SVG tag
+    svgContent = svgContent.replace(/<svg[^>]*>/, (svg_tag) => {
+      let new_tag = svg_tag;
+
+      if (width) {
+        new_tag = new_tag.includes('width=') ? new_tag.replace(/width=".*?"/, `width="${width}"`) : `${new_tag.slice(0, -1)} width="${width}"`;
+      }
+      if (height) {
+        new_tag = new_tag.includes('height=') ? new_tag.replace(/height=".*?"/, `height="${height}"`) : `${new_tag.slice(0, -1)} height="${height}"`;
+      }
+      return new_tag;
+    });
+
+    // Apply stroke color to all elements that can have a stroke within the SVG
     if (color) {
-      svgContent = svgContent.replace(/stroke=".*?"/g, `stroke="${color}"`);
-    }
-    // In case width and height attributes don't exist, we insert them into the <svg> tag
-    if (!svgContent.includes('width=')) {
-      svgContent = svgContent.replace('<svg', `<svg width="${width}"`);
-    }
-    if (!svgContent.includes('height=')) {
-      svgContent = svgContent.replace('<svg', `<svg height="${height}"`);
+      svgContent = svgContent.replace(/<(circle|rect|line|polyline|polygon|path|ellipse|g)([^>]*)>/g, (match, element, existing_attributes) => {
+        if (existing_attributes.includes('stroke=')) {
+          return match.replace(/stroke=".*?"/, `stroke="${color}"`);
+        } else {
+          return `<${element} stroke="${color}"${existing_attributes}>`;
+        }
+      });
     }
 
     return svgContent;

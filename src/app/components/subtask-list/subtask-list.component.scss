@@ -59,12 +59,15 @@
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
-
+    margin-right:8px;
     &.completed {
       border-color: rgb(62 64 219 / 20%);
       color: #fff;
       transition: background-color 0.3s, border-color 0.3s;
     }
+  }
+  app-inline-edit {
+    width: 100%;
   }
 
   .list-group-item {

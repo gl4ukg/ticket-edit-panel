@@ -7,7 +7,7 @@
       border-radius: 0;
       border-top: 1px solid #E6EBF0;
       border-bottom: 1px solid #E6EBF0;
-      padding:16px 23px;
+      padding:16px 24px;
 
       .view-switcher .btn {
         border: 0;
@@ -30,33 +30,43 @@
           border:0;
           color: #3E40DB;
         }
-        app-svg-icon  {
-          margin-right: 5px;
+        app-svg-icon {
+          width: 12px;
+          height: 12px;
+          display: flex;
+          align-items: center;
+          margin-right: 6px;
         }
-      }
-    }
-    .notification-bar {
-      background: linear-gradient(90deg, rgba(242,244,255,1) 0%, rgba(255,240,253,1) 100%);
-      margin:16px;
-      padding: 10px 12px;
-      border-radius: 5px;
-      app-svg-icon {
-        margin-right: 8px;
-      }
-      p {
-        font-size:14px;
-        color: #687196;
-        margin-bottom: 0;
-        font-weight: 500;
       }
     }
     .card-body {
+      padding:24px;
+      .notification-bar {
+        background: linear-gradient(90deg, rgba(242,244,255,1) 0%, rgba(255,240,253,1) 100%);
+        margin-bottom:24px;
+        padding: 10px 12px;
+        border-radius: 5px;
+        app-svg-icon {
+          width: 16px;
+          height: 16px;
+          margin-right: 8px;
+        }
+        p {
+          font-size:14px;
+          color: #687196;
+          margin-bottom: 0;
+          font-weight: 500;
+        }
+      }
       .label-box {
         width: 200px;
-        svg {
+        app-svg-icon {
           width: 16px;
-          height: 24px;
+          height: 16px;
         }
+      }
+      app-inline-edit {
+        width: calc(100% - 186px);
       }
       span.status {
         border-radius: 5px;
@@ -74,10 +84,5 @@
         margin-left: 6px;
       }
     }
-  }
-  app-svg-icon {
-    height: 12px;
-    display: flex;
-    align-items: center;
   }
 }

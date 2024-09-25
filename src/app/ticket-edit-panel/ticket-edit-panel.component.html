@@ -3,7 +3,7 @@
     <div class="card-header d-flex justify-content-between align-items-center">
       <div class="view-switcher btn-group" role="group">
         <button type="button" class="btn" [class.active]="currentView === 'Details'" (click)="switchView('Details')">
-          <app-svg-icon iconPath="assets/icon-details.svg" color="#3E40DB"></app-svg-icon>
+          <app-svg-icon iconPath="assets/icon-details.svg" color="#3E40DB" width="12px" height="12px"></app-svg-icon>
           Details
         </button>
         <button type="button" class="btn" [class.active]="currentView === 'Activity'" (click)="switchView('Activity')">
@@ -21,14 +21,14 @@
       </div>
     </div>
 
-    <div class="d-flex flex-row align-items-center notification-bar">
-      <app-svg-icon iconPath="assets/icon-logicpilot.svg"></app-svg-icon>
-      <p>Ask Logic Pilot to generate subtasks or to summarize content</p>
-    </div>
 
     <div class="card-body">
       <ng-container [ngSwitch]="currentView">
         <div *ngSwitchCase="'Details'">
+          <div class="d-flex flex-row align-items-center notification-bar">
+            <app-svg-icon iconPath="assets/icon-logicpilot.svg"></app-svg-icon>
+            <p>Ask Logic Pilot to generate subtasks or to summarize content</p>
+          </div>
           <form [formGroup]="ticketForm">
             <div class="d-flex flex-row mb-3">
               <div class="d-flex flex-row align-items-center label-box">
@@ -81,7 +81,7 @@
                 (valueChanged)="updateField('customerName', $event)">
               </app-inline-edit>
             </div>
-            <div class="d-flex flex-row mb-3">
+            <div class="d-flex flex-row mb-2">
               <div class="d-flex flex-row align-items-center label-box">
                 <app-svg-icon iconPath="assets/icon-invoiceid.svg"></app-svg-icon>
                 <label class="form-label">Invoice ID</label>
