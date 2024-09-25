@@ -1,0 +1,44 @@
+<div class="subtask-list">
+  <div class="d-flex flex-row align-items-center subtask-header">
+    <h5 class="mb-0">Subtasks</h5>
+    <!-- Progress slider -->
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width]="completionPercentage + '%'"></div>
+      </div>
+      <span class="progress-text">{{completedSubtasks}}/{{subtasks.length}}</span>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <p class="mb-0">Subtask name</p>
+    </div>
+    <ul class="list-group">
+      <li *ngFor="let subtask of subtasks" class="list-group-item d-flex align-items-center">
+        <div class="completion-circle" [ngClass]="{'completed': subtask.completed}" (click)="toggleCompletion(subtask)">
+          <app-svg-icon
+            *ngIf="subtask.completed"
+            iconPath="assets/icon-checkmark.svg"
+            width="10px"
+            height="8px">
+          </app-svg-icon>
+        </div>
+        <app-inline-edit
+          [value]="subtask.name"
+          fieldName="Subtask"
+          (valueChanged)="updateSubtaskName(subtask, $event)"
+        ></app-inline-edit>
+      </li>
+    </ul>
+    <form [formGroup]="newSubtaskForm" (ngSubmit)="addSubtask()" class="new-subtask-form d-flex mt-0">
+      <app-svg-icon
+        iconPath="assets/icon-addsubtask.svg"
+        width="10px"
+        height="8px">
+      </app-svg-icon>
+      <input #newSubtaskInput formControlName="name" class="form-control new-subtask-input me-2" placeholder="Add subtask" />
+    </form>
+  </div>
+</div>

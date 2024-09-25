@@ -1,0 +1,106 @@
+.subtask-list {
+  .subtask-header {
+    padding:20px;
+    border-bottom: 1px solid #E6EBF0;
+    h5 {
+      margin-right: 12px;
+    }
+    .progress-container {
+      display: flex;
+      align-items: center;
+
+      .progress-bar {
+        position: relative;
+        width: 100px; // Adjust to the size you want
+        height: 10px;
+        background-color: rgb(62 64 219 / 30%); // Lighter background color for the remaining part
+        border-radius: 3px;
+        overflow: hidden;
+
+        .progress-fill {
+          height: 100%;
+          width: 25%; // Adjust dynamically via Angular
+          background-color: #3E40DB; // Darker blue color for the completed part
+          border-radius: 3px;
+        }
+      }
+
+      .progress-text {
+        margin-left: 10px;
+        color: #687196;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+
+  }
+  .card {
+    margin:20px;
+    border-color: #E9EEF9;
+    .card-header {
+      background-color: #FAFBFD;
+      border:0;
+      p {
+        font-size: 12px;
+        font-weight: 500;
+        color: #687196;
+      }
+    }
+  }
+  .completion-circle {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(104 113 150 / 10%);
+    border: 1px solid #E9EEF9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+
+    &.completed {
+      border-color: rgb(62 64 219 / 20%);
+      color: #fff;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+  }
+
+  .list-group-item {
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-color: #E9EEF9;
+    &:hover {
+      background-color: #F1F3F8;
+    }
+
+    .btn {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  .new-subtask-form {
+    height: 42px;
+    background-color: #F1F3F8;
+    app-svg-icon {
+      width: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+    }
+    input {
+      background-color: #F1F3F8;
+      border-radius: 0;
+      border: 0;
+      font-size: 14px;
+      color: #687196;
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}

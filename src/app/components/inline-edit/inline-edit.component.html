@@ -1,0 +1,15 @@
+<div class="inline-edit">
+  <ng-container *ngIf="!editMode; else editTemplate">
+    <span (click)="enableEdit()" class="editable-field">{{ value || 'Click to edit' }}</span>
+  </ng-container>
+
+  <ng-template #editTemplate>
+    <input
+      #inputField
+      [formControl]="control"
+      (blur)="save()"
+      (keydown.enter)="save()"
+      (keydown.escape)="cancel()"
+      placeholder="Enter {{ fieldName }}" />
+  </ng-template>
+</div>

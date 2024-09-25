@@ -1,0 +1,83 @@
+.ticket-edit-panel {
+  .card {
+    border: 0;
+
+    .card-header {
+      background-color: transparent;
+      border-radius: 0;
+      border-top: 1px solid #E6EBF0;
+      border-bottom: 1px solid #E6EBF0;
+      padding:16px 23px;
+
+      .view-switcher .btn {
+        border: 0;
+        border-radius: 5px;
+        background-color: rgb(241 243 248 / 75%);
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+        color: #687196;
+        padding: 4px 8px;
+        font-size: 13px;
+        -webkit-box-shadow: 0px 1px 3px 0px rgba(128,128,128,1);
+        -moz-box-shadow: 0px 1px 3px 0px rgba(128,128,128,1);
+        box-shadow: 0px 1px 3px 0px rgba(128,128,128,1);
+        &:last-child {
+          margin-right: 0;
+        }
+        &.active {
+          background-color: rgb(62 64 219 / 10%);
+          border:0;
+          color: #3E40DB;
+        }
+        app-svg-icon  {
+          margin-right: 5px;
+        }
+      }
+    }
+    .notification-bar {
+      background: linear-gradient(90deg, rgba(242,244,255,1) 0%, rgba(255,240,253,1) 100%);
+      margin:16px;
+      padding: 10px 12px;
+      border-radius: 5px;
+      app-svg-icon {
+        margin-right: 8px;
+      }
+      p {
+        font-size:14px;
+        color: #687196;
+        margin-bottom: 0;
+        font-weight: 500;
+      }
+    }
+    .card-body {
+      .label-box {
+        width: 200px;
+        svg {
+          width: 16px;
+          height: 24px;
+        }
+      }
+      span.status {
+        border-radius: 5px;
+        background-color: #f4f46d;
+        padding: 4px 7px;
+        font-size: 14px;
+        color: #ac0d0d;
+      }
+      .form-label {
+        margin-bottom: 0;
+        font-weight: 600;
+        color: #687196;
+        font-weight: 500;
+        font-size: 14px;
+        margin-left: 6px;
+      }
+    }
+  }
+  app-svg-icon {
+    height: 12px;
+    display: flex;
+    align-items: center;
+  }
+}

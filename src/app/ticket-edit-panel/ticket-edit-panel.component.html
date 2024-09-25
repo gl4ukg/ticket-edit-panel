@@ -1,0 +1,120 @@
+<div class="ticket-edit-panel">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div class="view-switcher btn-group" role="group">
+        <button type="button" class="btn" [class.active]="currentView === 'Details'" (click)="switchView('Details')">
+          <app-svg-icon iconPath="assets/icon-details.svg" color="#3E40DB"></app-svg-icon>
+          Details
+        </button>
+        <button type="button" class="btn" [class.active]="currentView === 'Activity'" (click)="switchView('Activity')">
+          <app-svg-icon iconPath="assets/icon-activity.svg"></app-svg-icon>
+          Activity
+        </button>
+        <button type="button" class="btn" [class.active]="currentView === 'Comments'" (click)="switchView('Comments')">
+          <app-svg-icon iconPath="assets/icon-comments.svg"></app-svg-icon>
+          Comments
+        </button>
+        <button type="button" class="btn" [class.active]="currentView === 'Attachments'" (click)="switchView('Attachments')">
+          <app-svg-icon iconPath="assets/icon-attachments.svg"></app-svg-icon>
+          Attachments
+        </button>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row align-items-center notification-bar">
+      <app-svg-icon iconPath="assets/icon-logicpilot.svg"></app-svg-icon>
+      <p>Ask Logic Pilot to generate subtasks or to summarize content</p>
+    </div>
+
+    <div class="card-body">
+      <ng-container [ngSwitch]="currentView">
+        <div *ngSwitchCase="'Details'">
+          <form [formGroup]="ticketForm">
+            <div class="d-flex flex-row mb-3">
+              <div class="d-flex flex-row align-items-center label-box">
+                <app-svg-icon iconPath="assets/icon-status.svg" color="#B13600"></app-svg-icon>
+                <label class="form-label">Status</label>
+              </div>
+              <span class="status">{{ ticket.status }}</span>
+            </div>
+            <div class="d-flex flex-row mb-3">
+              <div class="d-flex flex-row align-items-center label-box">
+                <app-svg-icon iconPath="assets/icon-assignee.svg"></app-svg-icon>
+                <label class="form-label">Assignee</label>
+              </div>
+              <app-inline-edit
+                [value]="ticket.assignee"
+                fieldName="Assignee"
+                (valueChanged)="updateField('assignee', $event)">
+              </app-inline-edit>
+            </div>
+            <div class="d-flex flex-row mb-3">
+              <div class="d-flex flex-row align-items-center label-box">
+                <app-svg-icon iconPath="assets/icon-coowner.svg"></app-svg-icon>
+                <label class="form-label">Co-owner</label>
+              </div>
+              <app-inline-edit
+                [value]="ticket.coOwner"
+                fieldName="Co-owner"
+                (valueChanged)="updateField('coOwner', $event)">
+              </app-inline-edit>
+            </div>
+            <div class="d-flex flex-row mb-3">
+              <div class="d-flex flex-row align-items-center label-box">
+                <app-svg-icon iconPath="assets/icon-importance.svg"></app-svg-icon>
+                <label class="form-label">Importance</label>
+              </div>
+              <app-inline-edit
+                [value]="ticket.importance"
+                fieldName="Importance"
+                (valueChanged)="updateField('importance', $event)">
+              </app-inline-edit>
+            </div>
+            <div class="d-flex flex-row mb-3">
+              <div class="d-flex flex-row align-items-center label-box">
+                <app-svg-icon iconPath="assets/icon-customername.svg"></app-svg-icon>
+                <label class="form-label">Customer Name</label>
+              </div>
+              <app-inline-edit
+                [value]="ticket.customerName"
+                fieldName="Customer Name"
+                (valueChanged)="updateField('customerName', $event)">
+              </app-inline-edit>
+            </div>
+            <div class="d-flex flex-row mb-3">
+              <div class="d-flex flex-row align-items-center label-box">
+                <app-svg-icon iconPath="assets/icon-invoiceid.svg"></app-svg-icon>
+                <label class="form-label">Invoice ID</label>
+              </div>
+              <app-inline-edit
+                [value]="ticket.invoiceId"
+                fieldName="Invoice ID"
+                (valueChanged)="updateField('invoiceId', $event)">
+              </app-inline-edit>
+            </div>
+          </form>
+
+        </div>
+
+        <div *ngSwitchCase="'Activity'">
+          <h5>Activity</h5>
+          <!-- Placeholder Content -->
+        </div>
+
+        <div *ngSwitchCase="'Comments'">
+          <h5>Comments</h5>
+          <!-- Placeholder Content -->
+        </div>
+
+        <div *ngSwitchCase="'Attachments'">
+          <h5>Attachments</h5>
+          <!-- Placeholder Content -->
+        </div>
+      </ng-container>
+    </div>
+    <app-subtask-list
+      [subtasks]="ticket.subtasks"
+      (subtasksChange)="onSubtasksChange($event)">
+    </app-subtask-list>
+  </div>
+</div>

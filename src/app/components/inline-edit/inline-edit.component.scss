@@ -1,0 +1,29 @@
+.inline-edit {
+  .editable-field {
+    width: 400px;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: #687196;
+    font-size: 14px;
+    font-weight: 400;
+    &:hover {
+      background-color: #f0f0f0;
+      border-radius: 5px;
+    }
+  }
+
+  input {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #030929;
+    font-size: 14px;
+    font-weight: 500;
+    &:focus {
+      outline: none;
+      border-color: #AAAFFF;
+      border-radius: 5px;
+    }
+  }
+}

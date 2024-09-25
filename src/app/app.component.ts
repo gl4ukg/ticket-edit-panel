@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ticket-edit-panel';
+  title = 'Mega Electronix';
+  subTitle = 'Edit task';
 }
